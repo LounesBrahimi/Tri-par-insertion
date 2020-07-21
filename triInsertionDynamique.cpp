@@ -2,10 +2,10 @@
 
 using namespace std;
 
+void triInsertion(int nombre_elements, int** ensemble_elements);
 void allocation_dynamique(int nombre_elements, int** ensemble_elements);
 void saisie(int nombre_elements, int** ensemble_elements);
 void affichage(int nombre_elements, int** ensemble_elements);
-void triInsertion(int nombre_elements, int** ensemble_elements);
 
 int main() {
 	cout << "-------Tri par insertion-----------\n\n";
@@ -54,6 +54,20 @@ int main() {
 	return 0;
 }
 
+void triInsertion(int nombre_elements, int** ensemble_elements){
+	int intermediaire;
+	int j;
+	for( int i=1; i< nombre_elements; i++){
+		intermediaire = (*ensemble_elements)[i];
+		j = i - 1;
+		while(j>=0 && (*ensemble_elements)[j]> intermediaire){
+			(*ensemble_elements)[j+1] = (*ensemble_elements)[j];
+			j--;
+		}
+		(*ensemble_elements)[j+1] = intermediaire;
+	}
+}
+
 void allocation_dynamique(int nombre_elements, int** ensemble_elements){
 	*ensemble_elements = (int*) malloc(nombre_elements*sizeof(int));
 }
@@ -70,18 +84,4 @@ void affichage(int nombre_elements, int** ensemble_elements){
 		cout << "|" <<(*ensemble_elements)[i]<< "|" <<"  ";
 	}
 	cout <<"\n";
-}
-
-void triInsertion(int nombre_elements, int** ensemble_elements){
-	int intermediaire;
-	int j;
-	for( int i=1; i< nombre_elements; i++){
-		intermediaire = (*ensemble_elements)[i];
-		j = i - 1;
-		while(j>=0 && (*ensemble_elements)[j]> intermediaire){
-			(*ensemble_elements)[j+1] = (*ensemble_elements)[j];
-			j--;
-		}
-		(*ensemble_elements)[j+1] = intermediaire;
-	}
 }
